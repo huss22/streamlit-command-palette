@@ -7,7 +7,7 @@ name = "streamlit-command-palette"
 version = "0.1.0"
 description = "A Cmd/Ctrl-K command palette and global search overlay for Streamlit apps."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [
@@ -25,7 +25,6 @@ classifiers = [
   "Framework :: Streamlit",
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -34,7 +33,7 @@ classifiers = [
   "Topic :: Software Development :: User Interfaces"
 ]
 dependencies = [
-  "streamlit>=1.51.0"
+  "streamlit>=1.54.0"
 ]
 
 [project.optional-dependencies]
@@ -46,9 +45,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/streamlit-command-palette/streamlit-command-palette"
-Repository = "https://github.com/streamlit-command-palette/streamlit-command-palette"
-Issues = "https://github.com/streamlit-command-palette/streamlit-command-palette/issues"
+Homepage = "https://github.com/huss22/streamlit-command-palette"
+Repository = "https://github.com/huss22/streamlit-command-palette"
+Issues = "https://github.com/huss22/streamlit-command-palette/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -66,7 +65,7 @@ addopts = "-q"
 
 [tool.ruff]
 line-length = 88
-target-version = "py39"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]

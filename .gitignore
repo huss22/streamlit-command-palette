@@ -8,5 +8,5 @@ dist/
 build/
 *.egg-info/
 node_modules/
-src/streamlit_command_search/frontend/node_modules/
-src/streamlit_command_search/frontend/.vite/
+src/streamlit_command_palette/frontend/node_modules/
+src/streamlit_command_palette/frontend/.vite/

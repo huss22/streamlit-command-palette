@@ -14,7 +14,7 @@ pip install streamlit-command-palette
 ```
 
 Streamlit Custom Components v2 is required, so the package depends on
-`streamlit>=1.51.0`.
+`streamlit>=1.54.0` and Python `>=3.10`.
 
 ## Quickstart
 
@@ -207,7 +207,17 @@ need Node.js to install or run the component.
 2. Build the frontend from `src/streamlit_command_palette/frontend`.
 3. Run `pytest`.
 4. Run `python -m build`.
-5. Upload with `python -m twine upload dist/*`.
+5. Run `python -m twine check dist/*`.
+6. Publish from GitHub Actions using the included TestPyPI and PyPI workflows.
+
+GitHub Actions workflows are included for pull request CI, manual TestPyPI
+publishing, and PyPI publishing from GitHub releases.
+
+## Contributing and security
+
+See `CONTRIBUTING.md` for development setup and pull request expectations.
+See `SECURITY.md` for vulnerability reporting.
+See `CODE_OF_CONDUCT.md` for community expectations.
 
 ## License
 
