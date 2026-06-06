@@ -1,0 +1,12 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+node_modules/
+src/streamlit_command_search/frontend/node_modules/
+src/streamlit_command_search/frontend/.vite/

@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+include src/streamlit_command_palette/frontend/package.json
+include src/streamlit_command_palette/frontend/tsconfig.json
+include src/streamlit_command_palette/frontend/vite.config.ts
+recursive-include src/streamlit_command_palette/frontend/src *.ts
+recursive-include src/streamlit_command_palette/frontend/build *.js
+prune src/streamlit_command_palette/frontend/node_modules
+recursive-include examples *.py
+recursive-include tests *.py
+global-exclude __pycache__ *.py[cod] .DS_Store

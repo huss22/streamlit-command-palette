@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "streamlit-command-palette"
+version = "0.1.0"
+description = "A Cmd/Ctrl-K command palette and global search overlay for Streamlit apps."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "streamlit-command-palette contributors" }
+]
+keywords = [
+  "streamlit",
+  "streamlit-component",
+  "command-palette",
+  "search",
+  "custom-component"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Framework :: Streamlit",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Software Development :: User Interfaces"
+]
+dependencies = [
+  "streamlit>=1.51.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2",
+  "pytest>=8.0",
+  "ruff>=0.6",
+  "twine>=5.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/streamlit-command-palette/streamlit-command-palette"
+Repository = "https://github.com/streamlit-command-palette/streamlit-command-palette"
+Issues = "https://github.com/streamlit-command-palette/streamlit-command-palette/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["streamlit_command_palette*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+streamlit_command_palette = ["frontend/build/**/*", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
