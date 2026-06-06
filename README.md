@@ -7,6 +7,10 @@ It is intentionally small for v1: local client-side fuzzy search, grouped
 results, keyboard and mouse selection, and a simple Python API. It does not add
 AI search, database search, auth, or server-side search.
 
+## Preview
+
+![streamlit-command-palette demo](https://raw.githubusercontent.com/huss22/streamlit-command-palette/main/docs/assets/command-palette-demo.gif)
+
 ## Installation
 
 ```bash

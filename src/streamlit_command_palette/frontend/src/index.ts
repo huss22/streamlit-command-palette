@@ -180,8 +180,11 @@ function createInstance(parentElement: ParentNode) {
     if (results[index]?.item.disabled) {
       return;
     }
+    if (index === activeIndex) {
+      return;
+    }
     activeIndex = index;
-    renderResults();
+    syncActiveRow();
   };
 
   const onGlobalKeyDown = (event: KeyboardEvent) => {
@@ -234,10 +237,7 @@ function createInstance(parentElement: ParentNode) {
   };
 
   const renderResults = () => {
-    input.setAttribute(
-      "aria-activedescendant",
-      activeIndex >= 0 ? rowDomId(results[activeIndex].item.id) : "",
-    );
+    syncActiveRow();
 
     if (!open) {
       resultsEl.innerHTML = "";
@@ -272,6 +272,22 @@ function createInstance(parentElement: ParentNode) {
       row.addEventListener("mouseenter", () => setActive(index));
       row.addEventListener("click", () => selectResult(results[index]));
     });
+    syncActiveRow();
+  };
+
+  const syncActiveRow = () => {
+    input.setAttribute(
+      "aria-activedescendant",
+      activeIndex >= 0 ? rowDomId(results[activeIndex].item.id) : "",
+    );
+
+    resultsEl.querySelectorAll<HTMLElement>("[data-index]").forEach((row) => {
+      const index = Number(row.dataset.index);
+      const isActive = index === activeIndex;
+      row.classList.toggle("is-active", isActive);
+      row.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+
     const active = resultsEl.querySelector<HTMLElement>(".is-active");
     active?.scrollIntoView({ block: "nearest" });
   };
