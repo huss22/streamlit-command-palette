@@ -65,6 +65,9 @@ jobs:
       - name: Run Ruff
         run: ruff check .
 
+      - name: Validate Trove classifiers
+        run: python scripts/validate_classifiers.py
+
       - name: Build distributions
         run: python -m build
 
