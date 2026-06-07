@@ -49,6 +49,25 @@ def test_command_palette_alias_returns_selected_item(monkeypatch):
     }
 
 
+def test_command_search_strips_internal_selection_event_id(monkeypatch):
+    class EventResult:
+        selected = {
+            "id": "home",
+            "title": "Home",
+            _component._SELECTION_EVENT_ID: 1,
+        }
+
+    def renderer(**kwargs):
+        return EventResult()
+
+    monkeypatch.setattr(_component, "_get_component_renderer", lambda: renderer)
+
+    assert command_search([{"id": "home", "title": "Home"}]) == {
+        "id": "home",
+        "title": "Home",
+    }
+
+
 def test_command_search_can_render_hidden_mount(monkeypatch):
     calls = []
 

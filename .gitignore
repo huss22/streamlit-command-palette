@@ -6,6 +6,8 @@ __pycache__/
 .ruff_cache/
 dist/
 build/
+!src/streamlit_command_palette/frontend/build/
+!src/streamlit_command_palette/frontend/build/index.js
 *.egg-info/
 node_modules/
 src/streamlit_command_palette/frontend/node_modules/

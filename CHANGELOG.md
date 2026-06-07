@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This project uses semantic versioning where practical.
 
+## 0.1.1 - 2026-06-07
+
+### Fixed
+
+- Fixed mouse selection in the command palette so clicking an action result
+  reliably triggers the selected item.
+- Added an internal selection event id so repeated selections of the same item
+  are treated as distinct events.
+
 ## 0.1.0 - 2026-06-07
 
 ### Added

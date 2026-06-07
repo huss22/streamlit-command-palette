@@ -12,7 +12,20 @@ from ._schema import (
 
 _COMPONENT_NAME = "streamlit-command-palette.streamlit_command_palette"
 _HTML = '<div class="scs-root" data-streamlit-command-palette></div>'
+_SELECTION_EVENT_ID = "__streamlitCommandPaletteSelectionId"
 _renderer = None
+
+
+def _load_bundled_js() -> str:
+    bundle_path = Path(__file__).parent / "frontend" / "build" / "index.js"
+    try:
+        return bundle_path.read_text(encoding="utf-8")
+    except FileNotFoundError as exc:
+        raise RuntimeError(
+            "streamlit-command-palette could not find its frontend bundle. "
+            "Run `npm run build` from `src/streamlit_command_palette/frontend` "
+            "or install the package from PyPI."
+        ) from exc
 
 
 def _get_component_renderer():
@@ -32,29 +45,15 @@ def _get_component_renderer():
     if components is None or not hasattr(components, "component"):
         raise RuntimeError(
             "streamlit-command-palette requires Streamlit Custom Components v2 "
-            "(streamlit>=1.51.0)."
+            "(streamlit>=1.54.0)."
         )
 
-    try:
-        _renderer = components.component(
-            _COMPONENT_NAME,
-            html=_HTML,
-            js="index.js",
-            isolate_styles=True,
-        )
-    except Exception:
-        # Source checkouts are often run with PYTHONPATH before the package is
-        # installed, so Streamlit has not discovered the component manifest yet.
-        # In that case, register the same bundled asset as inline JavaScript.
-        bundled_js = (
-            Path(__file__).parent / "frontend" / "build" / "index.js"
-        ).read_text(encoding="utf-8")
-        _renderer = components.component(
-            _COMPONENT_NAME,
-            html=_HTML,
-            js=bundled_js,
-            isolate_styles=True,
-        )
+    _renderer = components.component(
+        _COMPONENT_NAME,
+        html=_HTML,
+        js=_load_bundled_js(),
+        isolate_styles=True,
+    )
     return _renderer
 
 
@@ -118,7 +117,11 @@ def command_search(
         height=rendered_height,
         on_selected_change=lambda: None,
     )
-    return getattr(result, "selected", None)
+    selected = getattr(result, "selected", None)
+    if isinstance(selected, dict):
+        selected = dict(selected)
+        selected.pop(_SELECTION_EVENT_ID, None)
+    return selected
 
 
 command_palette = command_search

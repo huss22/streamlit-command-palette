@@ -35,7 +35,7 @@ type ComponentData = {
 };
 
 type ComponentState = {
-  selected?: CommandItem | null;
+  selected?: (CommandItem & { __streamlitCommandPaletteSelectionId?: number }) | null;
 };
 
 type TriggerValueSetter = (
@@ -111,6 +111,7 @@ function createInstance(parentElement: ParentNode) {
   let open = false;
   let results: SearchResult[] = [];
   let activeIndex = -1;
+  let selectionSequence = 0;
 
   const update = (
     nextData: ComponentData,
@@ -167,7 +168,11 @@ function createInstance(parentElement: ParentNode) {
     if (result.item.disabled) {
       return;
     }
-    setTriggerValue("selected", result.item);
+    selectionSequence += 1;
+    setTriggerValue("selected", {
+      ...result.item,
+      __streamlitCommandPaletteSelectionId: selectionSequence,
+    });
     closePalette();
   };
 
